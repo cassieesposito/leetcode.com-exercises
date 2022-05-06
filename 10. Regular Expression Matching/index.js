@@ -16,29 +16,26 @@ isMatch = (string,pattern) => {
         if (p[pI] == s[sI] || p[pI] == ANY) { sI++; pI++; continue }
         if (p[pI+1] == REPEAT) { pI++; continue }
 
-        if (p[pI] == REPEAT) {
-            if (p[pI-1] == s[sI]) {sI++; continue}
-            if (p[pI-1] == ANY) { return dotStar(string.slice(sI-1), pattern.slice(pI+1)); }
-            pI++; continue
-        }
+        // Recursive handler
+        if (p[pI] == REPEAT) { debugger; return handleStar(string.slice(sI-1), pattern.slice(pI+1), p[pI-1]) }
 
         while (s[sI+1] >= s.length && p[pI+1] < p.length) {
             if (p[pI+2] == REPEAT) {pI += 2; continue}
             return false
         }
-
         return false
     }
     return true
 }
 
-dotStar = (string, pattern) => { 
+handleStar = (string, pattern, character) => { 
     if (!pattern) {return true}
     while (string) {
-        if (isMatch(string, pattern)) {return true}
-        string = string.slice(1)
+        debugger
+        if (isMatch(string, pattern)) {debugger; return true}
+        if (character == ANY || character == string.charAt(0)) { string = string.slice(1); continue }
+        return false
     }
-    return false
 }
 
-console.log(isMatch("aaa", "a*a"))
+console.log(isMatch("mississippi","mis*is*p*."))
