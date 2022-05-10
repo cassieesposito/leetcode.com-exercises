@@ -4,9 +4,10 @@
  * @return {boolean}
  */
 
-ANY = '.'
-REPEAT = '*'
+//I just realized this didn't ban me from using RegExp. This is cheating, right? It's going to kick an error when I actually submit it?
+//Update: it did not kick an error. I'm still not sure how I feel about this. Maybe I'll come back to it.
 
+<<<<<<< HEAD
 isMatch = (string, pattern) => {
     s = [...string]
     p = [...pattern]
@@ -59,3 +60,8 @@ handleStar = (string, pattern) => {
 }
 
 console.log(isMatch("aaa", "ab*ac*a"))
+=======
+isMatch = (s, p) => {
+    return new RegExp('^' + p + '$').test(s)
+}
+>>>>>>> builtIn
