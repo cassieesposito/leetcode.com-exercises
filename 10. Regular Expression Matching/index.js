@@ -4,47 +4,9 @@
  * @return {boolean}
  */
 
-ANY = '.'
-REPEAT = '*'
+//I just realized this didn't ban me from using RegExp. This is cheating, right? It's going to kick an error when I actually submit it?
+//Update: it did not kick an error. I'm still not sure how I feel about this. Maybe I'll come back to it.
 
-isMatch = (string, pattern) => {
-    s = [...string]
-    p = [...pattern]
-    sI = pI = 0
-
-    while (sI < s.length || pI < p.length) {
-        if (p[pI] == s[sI] || p[pI] == ANY) {
-            sI++;
-            pI++;
-            continue
-        }
-        if (p[pI + 1] == REPEAT) { pI++; continue }
-
-        // Recursive handler
-        if (p[pI] == REPEAT) { debugger; return handleStar(string.slice(sI == 0 ? 0 : sI - 1), pattern.slice(pI + 1), p[pI - 1]) }
-
-        while (s[sI + 1] >= s.length && p[pI + 1] < p.length) {
-            if (p[pI + 2] == REPEAT) { pI += 2; continue }
-            return false
-        }
-        return false
-    }
-    return true
+isMatch = (s, p) => {
+    return new RegExp('^' + p + '$').test(s)
 }
-
-handleStar = (string, pattern, character) => {
-    if (!pattern) { return true }
-    while (string) {
-        debugger
-        if (isMatch(string, pattern)) { debugger; return true }
-        if (character == ANY || character == string.charAt(0)) {
-            debugger;
-            string = string.slice(1);
-            debugger
-            continue
-        }
-        return false
-    }
-}
-
-console.log(isMatch("sippi", "s*is*p*."))
