@@ -15,12 +15,9 @@ function ListNode(val, next) {
 var nextNode = (list1, list2) => { return new ListNode(list1.val, mergeTwoLists(list1.next, list2)) }
 
 var mergeTwoLists = (list1, list2) => {
-    if (list1 || list2) {
-        if (list1 && (!list2 || list1.val < list2.val))
-            return nextNode(list1, list2)
-        return nextNode(list2, list1)
-    }
-    return null
+    if (!list1 && !list2) { return null }
+    if (list1 && (!list2 || list1.val < list2.val)) { return nextNode(list1, list2) }
+    return nextNode(list2, list1)
 };
 
 /*** END CODE TO SUBMIT ***/
