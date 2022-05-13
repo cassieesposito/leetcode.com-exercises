@@ -15,11 +15,12 @@ var isPalindrome = (head) => {
         list.push(head.val)
         head = head.next
     }
-    while (list.length) {
-        if (list[0] != list.pop()) { return false }
-        list.shift()
+    length = list.length
+    for (i = 0; i < length / 2; i++) {
+        if (list[i] != list[length - 1 - i]) return false
     }
     return true
+
 };
 
 
